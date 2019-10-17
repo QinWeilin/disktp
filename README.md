@@ -7,8 +7,7 @@ Files everywhere!
 
 Installation  
 ==  
--1. clone to your own PC  
--2.
+Please Wait...
 
 Version & Changelog  
 ==  
