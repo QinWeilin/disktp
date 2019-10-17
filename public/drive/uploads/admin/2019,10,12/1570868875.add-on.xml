@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SimBase.Document Type="AddOnXml" version="4,0" id="add-on">
+  <AddOn.Name>DigitalDesign_EDDP_Leipzig-Halle</AddOn.Name>
+  <AddOn.Description>DigitalDesign_EDDP_Leipzig-Halle</AddOn.Description>
+  <AddOn.Component>
+    <Name>DigitalDesign_EDDP_Leipzig-Halle</Name>
+    <Category>Scenery</Category>
+    <Path>D:\Entertainment\Prepar3D V4 Program Files\Addon Scenery\Leipzig EDDP P3Dv4\DigitalDesign_EDDP_Leipzig-Halle\scenery</Path>
+  </AddOn.Component>
+  <AddOn.Component>
+    <Category>Texture</Category>
+    <Path>D:\Entertainment\Prepar3D V4 Program Files\Addon Scenery\Leipzig EDDP P3Dv4\DigitalDesign_EDDP_Leipzig-Halle\texture</Path>
+  </AddOn.Component>
+</SimBase.Document>

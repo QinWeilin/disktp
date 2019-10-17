@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title> ehang | 我的网盘</title>
+    <link rel="stylesheet" href="__STATIC__/css/bootstrap.css">
+<!--	<link rel="stylesheet" href="static/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="__STATIC__/css/disk.css">
+    <link rel="stylesheet" href="__STATIC__/font-awesome-4.7.0/css/font-awesome.css">
+</head>
+<body>
+<section class="content" style="overflow-x: hidden">
+<div class="row">
+	<div class="col-lg-12">
+		<div class="head">
+			<div class="line">
+				<span class="title"> ehang | 我的网盘</span>
+				<span class="float-right">
+					<i class="fa fa-bell"></i>
+					&nbsp;
+					<i class="fa fa-user"></i>&nbsp;<span id="uname"></span>
+					&nbsp;
+					<button class="btn-default" style="border-radius: 5px;border-style: none;padding: 5px 5px;"><a href="../index/login/logout">注销</a></button>
+				</span>
+			</div>
+		</div>
+	</div>
+    <!--左侧边栏-->
+    <div class="col-lg-2">
+		<ul class="nav nav-tabs list-group" role="tablist" style="margin-left: 20px;margin-top: 20px;">
+			<li class="nav-item list-group-item d-flex justify-content-between align-items-center left-nav" style="border-color:">
+				<a class="active" href="#file" role="tab" data-toggle="tab">我的文件</a>
+				<span class="badge badge-primary badge-pill" id="file-number"></span>
+			</li>
+			<li class="nav-item list-group-item d-flex justify-content-between align-items-center left-nav">
+				<a  href="#share" role="tab" data-toggle="tab">共享资源</a>
+				<span class="badge badge-primary badge-pill" id="sharefile-number"></span>
+			</li>
+			<li class="nav-item list-group-item d-flex justify-content-between align-items-center left-nav">
+				<a  href="#group" role="tab" data-toggle="tab">群组</a>
+				<span class="badge badge-primary badge-pill"></span>
+			</li>
+		</ul>
+		<div class="info" style="margin-left: 20px;margin-top: 10px;border-radius: 5px;">
+			<h6 id="used" style="padding: 5px 5px;">已用空间:</h6>
+		</div>
+        <div class="info" style="margin-left: 20px;margin-top: 10px;border-radius: 5px;">
+            <h6 id="lastLogin" style="padding: 5px 5px;">最近一次登陆:</h6>
+        </div>
+    </div>
+
+    <!--右侧主体内容-->
+    <div class="col-lg-10">
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane fade show active" id="file">
+				<div class="panel panel-default" style="margin-right: 20px;margin-top: 20px;">
+					<div class="info" style="height: 45px;border-radius: 10px;">
+						<h4 class="float-left" style="padding: -1px -1px;">我的文件</h4>
+						<span class="float-right upload-button" style="margin-top: -8px;">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
+							  <i class="fa fa-upload" style="font-size: 24px;color:blue"></i> &nbsp;上传文件
+							</button>
+						</span>
+					</div>
+			<!--		上传弹出框-->
+					<div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">上传文件</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							  <span aria-hidden="true">×</span>
+							</button>
+						  </div>
+						  <form action="../index/File/Upload" method="post" enctype="multipart/form-data">
+							  <div class="modal-body">
+								<input type="file" name="my-file">
+							  </div>
+							  <div class="modal-footer">
+								<input type="submit" value="提交" class="btn btn-success">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+							  </div>
+						  </form>
+						</div>
+					  </div>
+					</div>
+
+					<!--数据表格-->
+					<div>
+						<table class="table tb" style="text-align: center">
+							<thead>
+							<tr>
+<!--								<th scope="col" style="text-align: center">id</th>-->
+								<th scope="col" style="text-align: center">文件名</th>
+								<th scope="col" style="text-align: center">大小</th>
+								<th scope="col" style="text-align: center">上传时间</th>
+								<th scope="col" style="text-align: center">操作</th>
+							</tr>
+							</thead>
+							<tbody id="my-files">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="share">
+				<div class="panel panel-default" style="margin-right: 20px;margin-top: 20px;">
+					<div class="info" style="height: 45px;border-radius: 10px;">
+						<h4 class="float-left">共享文件</h4>
+					</div>
+					<div class="panel-body">
+						<table class="table" style="text-align: center">
+							<thead>
+							<tr>
+<!--								<th scope="col" style="text-align: center">id</th>-->
+								<th scope="col" style="text-align: center">文件名</th>
+								<th scope="col" style="text-align: center">大小</th>
+								<th scope="col" style="text-align: center">上传时间</th>
+								<th scope="col" style="text-align: center">文件归属</th>
+								<th scope="col" style="text-align: center">操作</th>
+							</tr>
+							</thead>
+							<tbody id="share-files">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="group"></div>
+		</div>
+	</div>
+</div>
+</section>
+</body>
+<script src="__STATIC__/js/jquery.js" type="text/javascript"></script>
+<script src="__STATIC__/js/bootstrap.bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+	//显示用户id
+	$.get('../index/login/getUserName', function (res) {
+		let uname = res;
+		document.getElementById("uname").innerHTML = uname;
+	}, 'json')
+	// 显示隐藏的文件上传表单
+	function upload() {
+		let form = $('.upload-form')[0]
+		form.style.display = "block"
+	}
+
+	// 获取我的文件数据，把数据渲染到表格
+	function getMyFiles() {
+		let data = localStorage.getItem("myFiles");
+
+		$.get('../index/File/getMyFiles', function (res) {
+			// 缓存数据
+//            localStorage.setItem("myFiles", JSON.stringify(res))
+			// 渲染数据
+			renderForm(res)
+		}, 'json')
+
+	}
+	getMyFiles()
+
+	// 渲染我的文件表格数据
+	function renderForm(data){
+		let form = $('#my-files')
+		for( let item of data){
+			//console.log(item)
+			form.append(
+					`	<tr>
+
+                    <td>${item.name}</td>
+                    <td>${item.size / 1000}Kb</td>
+                    <td>${item.create_time}</td>
+                    <td>
+                        <a href="#" title="删除" onclick="del(${item.id}, '${item.path}')"><i class="fa fa-trash"></i></a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="${item.path}" title="下载" download="${item.name}"><i class="fa fa-download"></i></a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+					    <a href="#" title="分享" onclick="shareFiles(${item.id}, '${item.path}')"><i class="fa fa-share"></i></a>
+					</td>
+					</tr>`
+					)
+		}
+	}
+
+	// 获取分享文件数据，把数据渲染到表格
+	function getShareFiles() {
+		let data = localStorage.getItem("shareFiles");
+
+		$.get('../index/File/getShareFiles', function (res) {
+			renderShareForm(res)
+		}, 'json')
+	}
+	getShareFiles()
+
+	// 渲染分享文件表格数据
+	function renderShareForm(data) {
+		let form = $('#share-files')
+		$.get('../index/login/getUserName', function (res) {
+			let uname = res;
+		}, 'json')
+		for( let item of data){
+			// console.log(item)
+			form.append(
+					`	<tr>
+
+						<td>${item.name}</td>
+						<td>${item.size / 1000}Kb</td>
+						<td>${item.create_time}</td>
+						<td>${item.ofuser}</td>
+						<td>
+							<a href="#" title="取消分享" onclick="cancelShare(${item.id}, '${item.path}')"><i class="fa fa-trash-o"></i></a>
+							&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="${item.path}" title="下载" download="${item.name}"><i class="fa fa-download"></i></a>
+							&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="#"title="保存到我的文件" onclick="saveToMyFiles(${item.id}, '${item.path}')"><i class="fa fa-save"></i></a>
+						</td>
+					</tr>`
+					)
+					}
+	}
+
+	// 删除文件的函数
+	function del(id, path) {
+		if (confirm("确认要删除此文件？")) {
+			// 发送请求
+			$.get('../index/File/Delete?id='+id+"&path="+path , function (res) {
+				alert(res);
+				// 清除缓存
+				localStorage.removeItem("myFiles")
+			})
+			// 重新加载页面
+			location.reload();
+		}
+	}
+
+	//统计文件数量
+	function count(){
+		$.get('../index/File/Count', function(res){
+//		res[0]
+			let filenum = res[0][0];
+			document.getElementById("file-number").innerHTML = filenum;
+		},'json')
+
+		$.get('../index/File/shareFileCount',function (res) {
+			let sharefilenum = res[0][0];
+			document.getElementById("sharefile-number").innerHTML = sharefilenum;
+		},'json')
+
+		$.get('../index/File/usedRoom',function (res) {
+			let usedroom = res[0][0]/1000;
+			let numberofused = '已用空间:' + '&nbsp;&nbsp;' + usedroom + 'kb';
+			document.getElementById("used").innerHTML = numberofused;
+		},'json')
+	}
+	count()
+
+	//分享文件
+	function shareFiles(id, path) {
+		if (confirm("确认要分享此文件？")) {
+			// 发送请求
+			$.get('../index/File/shareFiles?id='+id+"&path="+path , function (res) {
+				alert(res);
+			})
+			// 重新加载页面
+			window.location.href = "{:url('../index/index')}";
+		}
+	}
+
+	function cancelShare(id, path) {
+		if (confirm("确认要取消分享此文件？")) {
+			// 发送请求
+			$.get('../index/File/cancelShare?id='+id+"&path="+path , function (res) {
+				alert(res);
+			})
+			// 重新加载页面
+			window.location.href = "{:url('../index/index')}";
+		}
+	}
+
+	function saveToMyFiles(id,path){
+		$.get('../index/File/saveToMyFiles?id='+id+"&path="+path , function (res) {
+			alert(res);
+		})
+		// 重新加载页面
+		window.location.href = "{:url('../index/index')}";
+	}
+
+	function lastLogin() {
+        $.get('../index/index/lastLogin', function (res) {
+            let thell = res;
+            let lastlogin = '最近一次登陆:' + '&nbsp;&nbsp;' + thell;
+            document.getElementById("lastLogin").innerHTML = lastlogin;
+        })
+    }
+    lastLogin()
+
+</script>
+</body>
+</html>
