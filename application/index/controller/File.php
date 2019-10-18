@@ -63,7 +63,7 @@ class File extends Index
             print_r($_FILES);
             die;
         }else{
-            echo "<script>alert('success,back to home page');location.href='http://disktp.com'</script>";
+            echo "<script>alert('success,back to home page');location.href={:url('../index/index')}</script>";
         }
 
         return [
